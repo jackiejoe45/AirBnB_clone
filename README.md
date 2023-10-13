@@ -5,7 +5,7 @@ This is a simple clone of the Airbnb website. It is a project for the Holberton 
 ## Installation
 Clone this repository in your terminal:
 ```bash
-$ git clone
+$ git clone https://github.com/jackiejoe45/AirBnB_clone.git
 ```
 ## Usage
 To start the console, run the following command:
