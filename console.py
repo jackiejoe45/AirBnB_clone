@@ -18,16 +18,17 @@ class HBNBCommand(cmd.Cmd):
     HBNBCommand class
     '''
     prompt = '(hbnb) '
-    classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place','Review']
+    classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place',
+               'Review']
 
     def do_quit(self, arg):
         '''Quit command to exit the program'''
         return True
-    
+
     def do_EOF(self, arg):
         '''EOF command to exit the program'''
         return True
-    
+
     def emptyline(self):
         '''Empty line'''
         pass
@@ -81,7 +82,8 @@ class HBNBCommand(cmd.Cmd):
         elif arg not in self.classes:
             print("** class doesn't exist **")
         else:
-            print([str(value) for key, value in storage.all().items() if arg in key])
+            print([str(value) for key, value in
+                   storage.all().items() if arg in key])
 
     def do_update(self, arg):
         '''Updates an instance based on the class name and id'''
@@ -103,6 +105,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.all()[key].save()
             else:
                 print("** no instance found **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
