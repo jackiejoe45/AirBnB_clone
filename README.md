@@ -5,7 +5,7 @@ This is a simple clone of the Airbnb website. It is a project for the Holberton 
 ## Installation
 Clone this repository in your terminal:
 ```bash
-$ git clone
+$ git clone https://github.com/jackiejoe45/AirBnB_clone.git
 ```
 ## Usage
 To start the console, run the following command:
@@ -54,7 +54,6 @@ To show all objects of a class, use the following syntax:
 (hbnb) show BaseModel 1234-1234-1234
 >>> [BaseModel] (1234-1234-1234) {'id': '1234-1234-1234', 'created_at': datetime.datetime(2020, 2, 19, 23, 55, 38, 544000), 'updated_at': datetime.datetime(2020, 2, 19, 23, 55, 38, 544000)}
 
-
 (hbnb) destroy BaseModel 1234-1234-1234
 >>> [BaseModel] (1234-1234-1234) {'id': '1234-1234-1234', 'created_at': datetime.datetime(2020, 2, 19, 23, 55, 38, 544000), 'updated_at': datetime.datetime(2020, 2, 19, 23, 55, 38, 544000)}
 
@@ -71,7 +70,6 @@ To show all objects of a class, use the following syntax:
 Documented commands (type help <topic>):
 ========================================
 EOF  all  create  destroy  help  quit  show  update
-
 
 (hbnb) quit
 >>> $
