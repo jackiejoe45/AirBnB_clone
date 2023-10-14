@@ -19,16 +19,16 @@ class HBNBCommand(cmd.Cmd):
     '''
     prompt = '(hbnb) '
     classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place',
-               'Review']
+                'Review']
 
     def do_quit(self, arg):
         '''Quit command to exit the program'''
         return True
-
+    
     def do_EOF(self, arg):
         '''EOF command to exit the program'''
         return True
-
+    
     def emptyline(self):
         '''Empty line'''
         pass
@@ -82,8 +82,7 @@ class HBNBCommand(cmd.Cmd):
         elif arg not in self.classes:
             print("** class doesn't exist **")
         else:
-            print([str(value) for key, value in
-                   storage.all().items() if arg in key])
+            print([str(value) for key, value in storage.all().items() if arg in key])
 
     def do_update(self, arg):
         '''Updates an instance based on the class name and id'''
@@ -106,6 +105,34 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
+        '''Update your command interpreter (console.py) to retrieve all instances of a class by using: <class name>.all().'''
+
+    def default(self, arg):
+        '''Default method - Allows to type <class name>.<command>() syntax'''
+        if '.' not in arg:
+            print("*** Unknown syntax: {}".format(arg))
+            return
+        class_name = arg.split('.')[0]
+        command = arg.split('.')[1].split('(')[0]
+        if command == 'all':
+            self.do_all(class_name)
+        elif command == 'count':
+            count = 0
+            for key in storage.all():
+                if class_name in key:
+                    count += 1
+            print(count)
+        elif command == 'show':
+            id = arg.split('(')[1].split(')')[0]
+            self.do_show(class_name + ' ' + id)
+        elif command == 'destroy':
+            id = arg.split('(')[1].split(')')[0]
+            self.do_destroy(class_name + ' ' + id)
+        elif command == 'update':
+            id = arg.split('(')[1].split(')')[0]
+            self.do_update(class_name + ' ' + id)
+        else:
+            print("*** Unknown syntax: {}".format(arg))
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
