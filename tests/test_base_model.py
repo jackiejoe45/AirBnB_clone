@@ -1,17 +1,16 @@
 #!/usr/bin/python3
-'''Unittest for BaseModel class'''
+'''
+Unittest for BaseModel class
+'''
 import unittest
-import os
-
 from models.base_model import BaseModel
-
-
 
 
 class TestBaseModel(unittest.TestCase):
     '''
     Test cases for BaseModel class
     '''
+
     def setUp(self):
         '''Set up'''
         self.base = BaseModel()
@@ -37,13 +36,15 @@ class TestBaseModel(unittest.TestCase):
 
     def test_updated_at(self):
         '''Test updated_at'''
-        self.assertTrue(hasattr(self.base, "updated_at"))   
+        self.assertTrue(hasattr(self.base, "updated_at"))
 
     def test_str(self):
         '''Test __str__'''
-        self.assertEqual(str(self.base), "[BaseModel] ({}) {}".
-                         format(self.base.id, self.base.__dict__))
-        
+        expected_str = "[BaseModel] ({}) {}".format(
+            self.base.id, self.base.__dict__
+        )
+        self.assertEqual(str(self.base), expected_str)
+
     def test_save(self):
         '''Test save'''
         self.base.save()
@@ -53,6 +54,7 @@ class TestBaseModel(unittest.TestCase):
         '''Test to_dict'''
         self.assertEqual(type(self.base.to_dict()), dict)
         self.assertTrue('to_dict' in dir(self.base))
+
 
 if __name__ == '__main__':
     unittest.main()

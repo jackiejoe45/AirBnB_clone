@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-'''Test for console'''
+'''
+Test for console
+'''
 import unittest
-# import pep8
 import os
-from console import HBNBCommand
-from unittest.mock import patch
 from io import StringIO
-from models import storage
+from unittest.mock import patch
+from console import HBNBCommand
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -27,14 +27,6 @@ class TestConsole(unittest.TestCase):
         '''Clean everything up after running setup'''
         pass
 
-    '''
-    def test_pep8_console(self):
-        Test pep8 style
-        style = pep8.StyleGuide(quiet=True)
-        result = style.check_files(['console.py'])
-        self.assertEqual(result.total_errors, 0, "fix pep8") 
-    '''
-
     def test_docstrings_in_console(self):
         '''Test docstrings'''
         self.assertIsNotNone(HBNBCommand.__doc__)
@@ -51,55 +43,73 @@ class TestConsole(unittest.TestCase):
         '''Test help quit'''
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.do_help("quit")
-            self.assertEqual(f.getvalue(), "Quit command to exit the program\n")
+            expected_output = "Quit command to exit the program\n"
+            self.assertEqual(f.getvalue(), expected_output)
 
     def test_help_EOF(self):
         '''Test help EOF'''
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.do_help("EOF")
-            self.assertEqual(f.getvalue(), "EOF command to exit the program\n")
+            expected_output = "EOF command to exit the program\n"
+            self.assertEqual(f.getvalue(), expected_output)
 
     def test_help_emptyline(self):
         '''Test help emptyline'''
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.do_help("")
-            self.assertEqual(f.getvalue(), "")
+            expected_output = ""
+            self.assertEqual(f.getvalue(), expected_output)
 
     def test_help_create(self):
         '''Test help create'''
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.do_help("create")
-            self.assertEqual(f.getvalue(), "Creates a new instance of BaseModel\n")
+            expected_output = "Creates a new instance of BaseModel\n"
+            self.assertEqual(f.getvalue(), expected_output)
 
     def test_help_show(self):
         '''Test help show'''
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.do_help("show")
-            self.assertEqual(f.getvalue(), "Prints the string representation of an instance\n")
+            expected_output = (
+                "Prints the string representation of an instance\n"
+            )
+            self.assertEqual(f.getvalue(), expected_output)
 
     def test_help_destroy(self):
         '''Test help destroy'''
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.do_help("destroy")
-            self.assertEqual(f.getvalue(), "Deletes an instance based on the class name and id\n")
+            expected_output = (
+                "Deletes an instance based on the class name and id\n"
+            )
+            self.assertEqual(f.getvalue(), expected_output)
 
     def test_help_all(self):
         '''Test help all'''
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.do_help("all")
-            self.assertEqual(f.getvalue(), "Prints all string representation of all instances\n")
+            expected_output = (
+                "Prints all string representation of all instances\n"
+            )
+            self.assertEqual(f.getvalue(), expected_output)
 
     def test_help_update(self):
         '''Test help update'''
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.do_help("update")
-            self.assertEqual(f.getvalue(), "Updates an instance based on the class name and id by adding or updating attribute\n")
+            expected_output = (
+                "Updates an instance based on the class name and id "
+                "by adding or updating attribute\n"
+            )
+            self.assertEqual(f.getvalue(), expected_output)
 
     def test_create(self):
         '''Test create'''
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.do_create("")
-            self.assertEqual(f.getvalue(), "** class name missing **\n")
+            expected_output = "** class name missing **\n"
+            self.assertEqual(f.getvalue(), expected_output)
 
     def test_create_class(self):
         '''Test create class'''
@@ -113,7 +123,6 @@ class TestConsole(unittest.TestCase):
             self.consol.do_create("BaseModel")
             self.assertTrue(len(f.getvalue()) > 0)
 
-'''to be continued'''
 
 if __name__ == '__main__':
     unittest.main()
