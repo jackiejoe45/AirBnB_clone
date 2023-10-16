@@ -55,6 +55,16 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(self.base.to_dict()), dict)
         self.assertTrue('to_dict' in dir(self.base))
 
+    def test_save(self):
+        '''Test save'''
+        self.base.save()
+        self.assertNotEqual(self.base.created_at, self.base.updated_at)
+
+    def test_to_dict(self):
+        '''Test to_dict'''
+        self.assertEqual(type(self.base.to_dict()), dict)
+        self.assertTrue('to_dict' in dir(self.base))
+
 
 if __name__ == '__main__':
     unittest.main()
