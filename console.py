@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 '''Console Module'''
 import cmd
-# import models
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -10,25 +9,22 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models.place import Place
-from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
-    '''
-    HBNBCommand class
-    '''
+    '''HBNBCommand class'''
     prompt = '(hbnb) '
-    classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place',
-                'Review']
+    classes = ['BaseModel', 'User', 'State', 'City',
+               'Amenity', 'Place', 'Review']
 
     def do_quit(self, arg):
         '''Quit command to exit the program'''
         return True
-    
+
     def do_EOF(self, arg):
         '''EOF command to exit the program'''
         return True
-    
+
     def emptyline(self):
         '''Empty line'''
         pass
@@ -82,7 +78,8 @@ class HBNBCommand(cmd.Cmd):
         elif arg not in self.classes:
             print("** class doesn't exist **")
         else:
-            print([str(value) for key, value in storage.all().items() if arg in key])
+            print([str(value) for key, value in storage.all().items()
+                  if arg in key])
 
     def do_update(self, arg):
         '''Updates an instance based on the class name and id'''
@@ -100,12 +97,13 @@ class HBNBCommand(cmd.Cmd):
             key = arg.split()[0] + '.' + arg.split()[1]
             if key in storage.all():
                 setattr(storage.all()[key], arg.split()[2], arg.split()[3])
-
                 storage.all()[key].save()
             else:
                 print("** no instance found **")
 
-        '''Update your command interpreter (console.py) to retrieve all instances of a class by using: <class name>.all().'''
+    '''Update your command interpreter (console.py) to
+       retrieve all instances of a class by using:
+       <class name>.all().'''
 
     def default(self, arg):
         '''Default method - Allows to type <class name>.<command>() syntax'''
@@ -133,6 +131,7 @@ class HBNBCommand(cmd.Cmd):
             self.do_update(class_name + ' ' + id)
         else:
             print("*** Unknown syntax: {}".format(arg))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
